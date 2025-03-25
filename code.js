@@ -1,10 +1,4 @@
 /* VARIABLES */
-let listElement = {
-    text: null,
-    creationDate: null,
-    finishDate: null
-}
-
 let listElements = []
 
 /* METHODS */
@@ -35,3 +29,15 @@ const refreshList = () => {
     }
 }
 
+const addListElement = () => {
+    let text = document.getElementById("text");
+    let creationDate = document.getElementById("creationDate");
+
+    let listElement = {
+        text: text,
+        creationDate: creationDate,
+        finishDate: null
+    }
+
+    listElements.push(listElement);
+}
