@@ -4,6 +4,7 @@ let listElements = []
 /* METHODS */
 const refreshList = () => {
     list = document.getElementById("list");
+    newList = "";
 
     list.innerHTML = '';
 
@@ -11,15 +12,19 @@ const refreshList = () => {
     {
         if (listElements[i].finishDate == null)
         {
-            list.innerHTML =
-            ``
-              listElements[i].text
-              listElements[i].creationDate  
-            ``    
+            newList =+
+            `
+            <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
+                <td>${listElements[i].text}</td>
+                <td>${listElements[i].creationDate}</td>
+                <td>???</td>
+            </tr>
+            `   
         }
         else
         {
-            list.innerHTML =
+            newList =+
             `
             <tr>
                 <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
@@ -30,6 +35,7 @@ const refreshList = () => {
             `
         }
     }
+    list.innerHTML = newList;
 }
 
 const addListElement = () => {
