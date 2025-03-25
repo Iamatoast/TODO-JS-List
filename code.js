@@ -34,10 +34,15 @@ const addListElement = () => {
     let creationDate = document.getElementById("creationDate");
 
     let listElement = {
+        id: listElements.length,
         text: text,
         creationDate: creationDate,
         finishDate: null
     }
 
     listElements.push(listElement);
+}
+
+const removeListElement = (id) => {
+    listElements.splice(id, 1)
 }
