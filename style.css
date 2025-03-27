@@ -5,6 +5,13 @@ section{
     margin: 2%;
 }
 #newElement{
-    position: sticky;
+    position: fixed;
     bottom: 0;
+    width: 89%;
+}
+#delete{
+    margin: 2.6%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
