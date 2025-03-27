@@ -3,54 +3,50 @@ let listElements = []
 
 /* METHODS */
 const refreshList = () => {
-    list = document.getElementById("list");
-    newList = "";
+    console.log("refreshList");
+    let list = document.getElementById("list");
+    let newList = "";
+    console.log(listElements);
 
-    list.innerHTML = '';
-
-    for (let i; i < listElements.length; i++)
+    for (let i = 0; i < listElements.length; i++)
     {
         if (listElements[i].finishDate == null)
         {
-            newList =+
+            newList +=
             `
             <tr>
                 <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
                 <td>${listElements[i].text}</td>
-                <td>${listElements[i].creationDate}</td>
-                <td>???</td>
-            </tr>
-            `   
-        }
-        else
-        {
-            newList =+
-            `
-            <tr>
-                <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
-                <td>${listElements[i].text}</td>
-                <td>${listElements[i].creationDate}</td>
-                <td>${listElements[i].finishDate}</td>
+                <td>${new Date(listElements[i].creationDate).toDateString()}</td>
+                <td>${listElements[i].finishDate ? new Date(listElements[i].finishDate).toDateString() : "???"}</td>
             </tr>
             `
         }
     }
+    console.log(newList);
     list.innerHTML = newList;
 }
 
 const addListElement = () => {
+    console.log("addListElement");
     let text = document.getElementById("text");
 
     let listElement = {
         id: listElements.length,
-        text: text,
-        creationDate: Date.toDateString(),
+        text: text.value,
+        creationDate: Date(),
         finishDate: null
     }
 
     listElements.push(listElement);
+
+    refreshList();
 }
 
 const removeListElement = (id) => {
-    listElements.splice(id, 1)
+    console.log("removeListElement");
+    listElements.splice(id, 1);
+    listElements.forEach((el, index) => el.id = index);
+
+    refreshList();
 }

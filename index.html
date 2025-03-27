@@ -19,14 +19,14 @@
           <th scope="col">Fecha Completado</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="list">
       </tbody>
     </table>
   </section>
   <section>
     <div class="input-group mb-3">
-      <button type="button" class="btn btn-secondary btn-sm">New</button>
-      <input type="text" class="form-control" placeholder="Nueva tarea" aria-label="Username" aria-describedby="basic-addon1">
+      <button type="button" class="btn btn-secondary btn-sm" onclick="addListElement()">New</button>
+      <input type="text" id="text" class="form-control" placeholder="Nueva tarea" aria-label="Username" aria-describedby="basic-addon1">
     </div>
   </section>
   <button type="button" class="btn btn-danger btn-lg">Delete</button> 
