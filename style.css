@@ -1,13 +1,25 @@
+@font-face{
+    font-family: 'Game Bubble';
+    src: url('Game\ Bubble.ttf');
+}
+body{
+    background-image: linear-gradient(to right, #1e729c, #1fa15f);
+}
 h1{
     text-align: center;
+    font-size: 400%;
+    font-family: 'Game Bubble';
 }
 section{
     margin: 2%;
 }
+#table{
+    margin-bottom: 7%;
+}
 #newElement{
     position: fixed;
     bottom: 0;
-    width: 89%;
+    width: 89vw;
 }
 #delete{
     margin: 2.6%;
