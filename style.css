@@ -4,3 +4,7 @@ h1{
 section{
     margin: 2%;
 }
+#newElement{
+    position: sticky;
+    bottom: 0;
+}

@@ -15,6 +15,7 @@ const refreshList = () => {
             newList =+
             `
             <tr>
+                <th scope="row">id</th>
                 <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
                 <td>${listElements[i].text}</td>
                 <td>${listElements[i].creationDate}</td>
