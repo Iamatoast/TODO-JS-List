@@ -6,39 +6,42 @@ const refreshList = () => {
     console.log("refreshList");
     let list = document.getElementById("list");
     console.log(list)
+
     let newList = "";
-    console.log(listElements);
 
     for (let i = 0; i < listElements.length; i++)
     {
-        console.log(document.getElementById(i).checked)
-        if (document.getElementById(i).checked || document.getElementById(i).checked == null) // FIX
+        let isChecked = document.getElementById(`checkbox-${listElements[i].id}`)?.checked || false;
+        if (listElements.length > 0)
         {
             newList +=
             `
-            <tr id="${listElements[i].id}">
+            <tr id="">
                 <th scope="row">${listElements[i].id + 1}</th>
-                <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
+                <th scope="row"><input class="form-check-input" type="checkbox" value="" id="checkbox-${listElements[i].id}" ${isChecked ? "checked" : ""}></th>
                 <td>${listElements[i].text}</td>
-                <td>${new Date(listElements[i].creationDate).toDateString()}</td>
+                <td>${listElements[i].creationDate ? new Date(listElements[i].creationDate).toDateString() : "???"}</td>
                 <td>${listElements[i].finishDate ? new Date(listElements[i].finishDate).toDateString() : "???"}</td>
             </tr>
-            `
+            `;
         }
         else
         {
             newList +=
             `
             <tr>
-                <th scope="row">${listElements[i].id + 1}</th>
-                <th scope="row"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked></th>
-                <td>${listElements[i].text}</td>
-                <td>${listElements[i].creationDate ? new Date(listElements[i].creationDate).toDateString() : "???"}</td>
-                <td>${listElements[i].finishDate ? new Date(listElements[i].finishDate).toDateString() : "???"}</td>
+                <th scope="row">1</th>
+                <th scope="row">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox-0">
+                </th>
+                <td>No hay elementos</td>
+                <td>???</td>
+                <td>???</td>
             </tr>
-            `
+            `;
         }
     }
+    
     console.log(newList);
     list.innerHTML = newList;
 }
