@@ -1,5 +1,5 @@
 /* VARIABLES */
-let listElements = []
+let listElements = [];
 
 /* METHODS */
 const refreshList = () => {

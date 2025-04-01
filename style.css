@@ -19,9 +19,16 @@ section{
 #newElement{
     position: fixed;
     bottom: 0;
-    width: 89vw;
+    width: 87vw;
 }
 #delete{
+    margin-right: 2.6%;
+    margin-bottom: 6%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+#tareaRapida{
     margin: 2.6%;
     position: fixed;
     bottom: 0;
