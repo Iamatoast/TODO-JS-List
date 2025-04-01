@@ -12,6 +12,16 @@ const refreshList = () => {
     for (let i = 0; i < listElements.length; i++)
     {
         let isChecked = document.getElementById(`checkbox-${listElements[i].id}`)?.checked || false;
+
+        if (isChecked) //FIX
+        {
+            listElements[i].finishDate = Date();
+        }
+        else
+        {
+            finishDate = null;
+        }
+
         if (listElements.length > 0)
         {
             newList +=
