@@ -9,23 +9,20 @@ const refreshList = () => {
 
     let newList = "";
 
-    for (let i = 0; i < listElements.length; i++)
-    {
+    for (let i = 0; i < listElements.length; i++) {
         let isChecked = document.getElementById(`checkbox-${listElements[i].id}`)?.checked || false;
 
         if (isChecked) //FIX
         {
             listElements[i].finishDate = Date();
         }
-        else
-        {
+        else {
             finishDate = null;
         }
 
-        if (listElements.length > 0)
-        {
+        if (listElements.length > 0) {
             newList +=
-            `
+                `
             <tr id="">
                 <th scope="row">${listElements[i].id + 1}</th>
                 <th scope="row"><input class="form-check-input" type="checkbox" value="" id="checkbox-${listElements[i].id}" ${isChecked ? "checked" : ""}></th>
@@ -35,10 +32,9 @@ const refreshList = () => {
             </tr>
             `;
         }
-        else
-        {
+        else {
             newList +=
-            `
+                `
             <tr>
                 <th scope="row">1</th>
                 <th scope="row">
@@ -51,7 +47,7 @@ const refreshList = () => {
             `;
         }
     }
-    
+
     console.log(newList);
     list.innerHTML = newList;
 }
@@ -70,6 +66,17 @@ const addListElement = () => {
     listElements.push(listElement);
 
     refreshList();
+    //Agarrar por id la ubicacion del la fecha que queres cambiar (poner id a la fecha). Una vez que se le de a click, modificar el fecha.innerhtml y agregar el valor calculado
+    let input = document.querySelectorAll(".form-check-input")
+
+    input.forEach((element) => {
+        //el click puede cambiar por change, investigalo
+        element.addEventListener("change", () => {
+
+        })
+
+
+    })
 }
 
 const removeListElement = (id) => {
@@ -79,3 +86,4 @@ const removeListElement = (id) => {
 
     refreshList();
 }
+
