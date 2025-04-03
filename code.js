@@ -45,6 +45,7 @@ const refreshList = () => {
             `;
         }
     }
+    localStorage.setItem("todoList", JSON.stringify(listElements));
 
     list.innerHTML = newList;
 }
@@ -120,4 +121,8 @@ const showFastest = () =>{
 		}
 	}
 	alert(text);
+}
+if(localStorage.getItem("todoList") != null && localStorage.getItem("todoList") != undefined) {
+    listElements = JSON.parse(localStorage.getItem("todoList"));
+    refreshList();
 }
