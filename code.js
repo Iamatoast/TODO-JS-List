@@ -8,6 +8,7 @@ const refreshList = () => {
     let newList = "";
 
     for (let i = 0; i < listElements.length; i++) {
+	listElements[i].id = i;
 
         if (listElements[i].checked) //FIX
         {
@@ -52,26 +53,17 @@ const addListElement = () => {
     let text = document.getElementById("text");
 
     let listElement = {
+	    id: 0,
         text: text.value,
         creationDate: Date(),
         finishDate: null,
-	checked: false
+	    checked: false
     }
 
     listElements.push(listElement);
 
     refreshList();
-    //Agarrar por id la ubicacion del la fecha que queres cambiar (poner id a la fecha). Una vez que se le de a click, modificar el fecha.innerhtml y agregar el valor calculado
-    let input = document.querySelectorAll(".form-check-input")
-
-    input.forEach((element) => {
-        //el click puede cambiar por change, investigalo
-        element.addEventListener("change", () => {
-
-        })
-
-
-    })
+    
 }
 
 const removeListElement = (id) => {
@@ -101,7 +93,31 @@ const deleteTask = () =>{
 			listElements.splice(tasks[i].id - numEliminado, 1);
 			numEliminado++;
 		}
-		console.log(listElements);
 		refreshList();
 	}
+}
+const showFastest = () =>{
+	let task = [listElements[0]];
+	let text;
+	for(let i = 1; i < listElements.length; i++){
+		if(task[0].finishDate == null) task = [listElements[i]];
+		else if(listElements[i].finishDate > task[0].finishDate) task = [listElements[i]];
+		else if(listElements[i].finishDate == task[0].finishDate) task.push(listElements[i]);
+	console.log(task[0]);
+	}
+	if(task[0].finishDate == null){
+		text = "Ninguna tarea se ha completado";
+	}
+	else if(task.length == 1){
+		text = `La tarea mas rapida fue la numero ${task[0].id + 1}`;
+	}
+	else{
+		text = "Las tareas mas rapidas fueron: ";
+		for(let i = 0; i < task.length; i++){
+			if(i + 1 == task.length) text += " y ";
+			text += "la numero " + (task[i].id + 1);
+			if(i + 2 != task.length && i + 1 != task.length) text += ", ";
+		}
+	}
+	alert(text);
 }
