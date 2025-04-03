@@ -8,22 +8,21 @@ const refreshList = () => {
     let newList = "";
 
     for (let i = 0; i < listElements.length; i++) {
-        let isChecked = document.getElementById(`checkbox-${listElements[i].id}`)?.checked || false;
 
-        if (isChecked) //FIX
+        if (listElements[i].checked) //FIX
         {
             listElements[i].finishDate = Date();
         }
         else {
-            finishDate = null;
+            listElements[i].finishDate = null;
         }
 
         if (listElements.length > 0) {
             newList +=
                 `
-            <tr id="${listElements[i].id}" onclick="select(${listElements[i].id})">
-                <th scope="row">${listElements[i].id + 1}</th>
-                <th scope="row"><input class="form-check-input" type="checkbox" value="" id="checkbox-${listElements[i].id}" ${isChecked ? "checked" : ""}></th>
+            <tr id="${i}" onclick="select(${i})">
+                <th scope="row">${i + 1}</th>
+                <th scope="row"><input class="form-check-input" type="checkbox" value="" id="checkbox-${listElements[i].id}" ${listElements[i].checked ? "checked" : ""} onclick="checkTask(${i})"></th>
                 <td>${listElements[i].text}</td>
                 <td>${listElements[i].creationDate ? new Date(listElements[i].creationDate).toDateString() : "???"}</td>
                 <td>${listElements[i].finishDate ? new Date(listElements[i].finishDate).toDateString() : "???"}</td>
@@ -53,10 +52,10 @@ const addListElement = () => {
     let text = document.getElementById("text");
 
     let listElement = {
-        id: listElements.length,
         text: text.value,
         creationDate: Date(),
-        finishDate: null
+        finishDate: null,
+	checked: false
     }
 
     listElements.push(listElement);
@@ -81,7 +80,11 @@ const removeListElement = (id) => {
 
     refreshList();
 }
-
+const checkTask = (id) => {
+	let task = listElements[id];
+	task.checked = !task.checked;
+	refreshList();
+}
 const select = (id) =>{
 	let task = document.getElementById(id);
 	task.classList.toggle("checked");
@@ -93,10 +96,10 @@ const deleteTask = () =>{
 		alert("No hay tareas seleccionadas");
 	}
 	else{
-		console.log(tasks[0].id);
-		console.log(listElements);
+		let numEliminado = 0;
 		for(let i = 0; i < tasks.length; i++){
-			listElements.splice(tasks[i].id, 1);
+			listElements.splice(tasks[i].id - numEliminado, 1);
+			numEliminado++;
 		}
 		console.log(listElements);
 		refreshList();
