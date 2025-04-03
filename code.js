@@ -3,9 +3,7 @@ let listElements = [];
 
 /* METHODS */
 const refreshList = () => {
-    console.log("refreshList");
     let list = document.getElementById("list");
-    console.log(list)
 
     let newList = "";
 
@@ -23,7 +21,7 @@ const refreshList = () => {
         if (listElements.length > 0) {
             newList +=
                 `
-            <tr id="">
+            <tr id="${listElements[i].id}" onclick="select(${listElements[i].id})">
                 <th scope="row">${listElements[i].id + 1}</th>
                 <th scope="row"><input class="form-check-input" type="checkbox" value="" id="checkbox-${listElements[i].id}" ${isChecked ? "checked" : ""}></th>
                 <td>${listElements[i].text}</td>
@@ -48,12 +46,10 @@ const refreshList = () => {
         }
     }
 
-    console.log(newList);
     list.innerHTML = newList;
 }
 
 const addListElement = () => {
-    console.log("addListElement");
     let text = document.getElementById("text");
 
     let listElement = {
@@ -80,10 +76,29 @@ const addListElement = () => {
 }
 
 const removeListElement = (id) => {
-    console.log("removeListElement");
     listElements.splice(id, 1);
     listElements.forEach((el, index) => el.id = index);
 
     refreshList();
 }
 
+const select = (id) =>{
+	let task = document.getElementById(id);
+	task.classList.toggle("checked");
+	task.classList.toggle("table-active");
+}
+const deleteTask = () =>{
+	let tasks = document.querySelectorAll(".checked");
+	if(tasks === undefined || tasks.length == 0){
+		alert("No hay tareas seleccionadas");
+	}
+	else{
+		console.log(tasks[0].id);
+		console.log(listElements);
+		for(let i = 0; i < tasks.length; i++){
+			listElements.splice(tasks[i].id, 1);
+		}
+		console.log(listElements);
+		refreshList();
+	}
+}
